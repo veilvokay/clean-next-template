@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "./styles/base.sass";
+import { Righteous } from "next/font/google";
+import { BreakpointsContextProvider } from "./services/breakpoints";
+import { Header } from "./sections/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const righteous = Righteous({
+  weight: ["400"],
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--main-font",
 });
 
 export const metadata: Metadata = {
@@ -24,8 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={righteous.variable}>
+        {/* <BreakpointsContextProvider> */}
+        <Header />
         {children}
+        {/* </BreakpointsContextProvider> */}
       </body>
     </html>
   );
